@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabash Perera - Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            color: #f0f0f0;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .typing-text {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+            margin-left: 5px;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Tech Icons Floating */
+        .tech-float-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(167, 139, 250, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 139, 250, 0.4);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: rgba(167, 139, 250, 0.9);
+            animation: float-tech 6s infinite ease-in-out;
+        }
+        
+        @keyframes float-tech {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            animation: bounce 2s infinite;
+            z-index: 10;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .scroll-indicator.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .mouse {
+            width: 26px;
+            height: 40px;
+            border: 2px solid rgba(167, 139, 250, 0.6);
+            border-radius: 20px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .wheel {
+            width: 4px;
+            height: 8px;
+            background: rgba(167, 139, 250, 0.9);
+            border-radius: 2px;
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 1.5s infinite;
+        }
+        
+        @keyframes scroll {
+            0% { opacity: 1; top: 8px; }
+            100% { opacity: 0; top: 24px; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #f472b6 0%, #fb923c 100%);
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            animation-delay: -5s;
+        }
+        
+        .shape:nth-child(3) {
+            bottom: 10%;
+            left: 15%;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            border-radius: 41% 59% 41% 59% / 41% 59% 41% 59%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .skill-card:hover::before {
+            left: 100%;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(167, 139, 250, 0.5);
+            box-shadow: 0 20px 40px rgba(167, 139, 250, 0.3);
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(167, 139, 250, 0.4);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .cert-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cert-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(167, 139, 250, 0.4);
+        }
+        
+        .cert-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.6);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 100%;
+            color: white;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #a78bfa;
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(167, 139, 250, 0.5);
+        }
+        
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #a78bfa 0%, #ec4899 100%);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar fixed w-full top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">PP</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-purple-400 transition">Home</a>
+                    <a href="#about" class="hover:text-purple-400 transition">About</a>
+                    <a href="#skills" class="hover:text-purple-400 transition">Skills</a>
+                    <a href="#projects" class="hover:text-purple-400 transition">Projects</a>
+                    <a href="#certificates" class="hover:text-purple-400 transition">Certificates</a>
+                    <a href="#contact" class="hover:text-purple-400 transition">Contact</a>
+                </div>
+                <button class="md:hidden text-2xl" id="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div class="mobile-menu mt-4" id="mobile-menu">
+                <a href="#home" class="block py-2 hover:text-purple-400 transition">Home</a>
+                <a href="#about" class="block py-2 hover:text-purple-400 transition">About</a>
+                <a href="#skills" class="block py-2 hover:text-purple-400 transition">Skills</a>
+                <a href="#projects" class="block py-2 hover:text-purple-400 transition">Projects</a>
+                <a href="#certificates" class="block py-2 hover:text-purple-400 transition">Certificates</a>
+                <a href="#contact" class="block py-2 hover:text-purple-400 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Ultra Modern Design -->
+    <section id="home" class="hero-section">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-5xl mx-auto">
+                <div class="fade-in mb-8">
+                    <div class="inline-block px-6 py-2 bg-purple-500 bg-opacity-30 rounded-full border border-purple-400 border-opacity-50 mb-6">
+                        <span class="text-purple-300 text-sm font-semibold">Available for new opportunities</span>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <h1 class="text-7xl md:text-8xl font-black mb-6 leading-tight">
+                        Hi, I'm <span class="gradient-text">Prabash</span>
+                    </h1>
+                    
+                    <div class="h-20 mb-8">
+                        <h2 class="text-4xl md:text-5xl font-bold gradient-text typing-text">
+                            Backend Developer
+                        </h2>
+                    </div>
+                    
+                    <p class="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
+                        Crafting <span class="text-purple-300 font-semibold">robust backend systems</span> with Java & Spring Boot. 
+                        Building the future, one API at a time.
+                    </p>
+                </div>
+                
+                <div class="fade-in flex gap-6 justify-center flex-wrap mb-12">
+                    <a href="#contact" class="btn-primary text-lg px-8 py-4">
+                        Let's Talk <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#projects" class="btn-secondary text-lg px-8 py-4">
+                        <i class="fas fa-rocket mr-2"></i> View Work
+                    </a>
+                </div>
+                
+                <div class="fade-in flex gap-6 justify-center items-center relative z-20">
+                    <a href="#" class="social-link transform hover:scale-110">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="social-link transform hover:scale-110">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="social-link transform hover:scale-110">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="social-link transform hover:scale-110">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Floating Tech Icons -->
+            <div class="tech-float-container hidden lg:block">
+                <div class="tech-icon" style="top: 20%; left: 10%;">
+                    <i class="fab fa-java"></i>
+                </div>
+                <div class="tech-icon" style="top: 60%; left: 15%; animation-delay: -2s;">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="tech-icon" style="top: 30%; right: 10%; animation-delay: -4s;">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="tech-icon" style="top: 70%; right: 15%; animation-delay: -6s;">
+                    <i class="fab fa-react"></i>
+                </div>
+                <div class="tech-icon" style="top: 50%; right: 8%; animation-delay: -8s;">
+                    <i class="fab fa-python"></i>
+                </div>
+                <div class="tech-icon" style="top: 40%; left: 8%; animation-delay: -10s;">
+                    <i class="fab fa-js"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p class="text-sm text-gray-400 mt-3">Scroll Down</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title gradient-text fade-in">About Me</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="fade-in">
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        I'm an undergraduate software engineer with a strong passion for backend development and full-stack solutions. 
+                        My expertise lies in Java and Spring Boot, where I create robust, scalable enterprise applications.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Currently expanding my knowledge in full-stack development, I combine strong technical skills with creative 
+                        problem-solving. I enjoy building efficient backend systems and bringing ideas to life through code.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-6 mt-12">
+                        <div class="skill-card text-center fade-in">
+                            <i class="fas fa-server text-5xl gradient-text mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Backend Expert</h3>
+                            <p class="text-gray-400">Spring Boot & Java</p>
+                        </div>
+                        <div class="skill-card text-center fade-in">
+                            <i class="fas fa-database text-5xl gradient-text mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Database Pro</h3>
+                            <p class="text-gray-400">MySQL Expert</p>
+                        </div>
+                        <div class="skill-card text-center fade-in">
+                            <i class="fas fa-laptop-code text-5xl gradient-text mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Full Stack</h3>
+                            <p class="text-gray-400">Modern Web Dev</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title gradient-text fade-in">Technical Skills</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fab fa-java mr-2 gradient-text"></i>Java</span>
+                        <span class="text-purple-400">Expert</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fas fa-leaf mr-2 gradient-text"></i>Spring Boot</span>
+                        <span class="text-purple-400">Intermediate</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fab fa-html5 mr-2 gradient-text"></i>HTML & CSS</span>
+                        <span class="text-purple-400">Expert</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fab fa-js mr-2 gradient-text"></i>JavaScript</span>
+                        <span class="text-purple-400">Intermediate</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fab fa-python mr-2 gradient-text"></i>Python</span>
+                        <span class="text-purple-400">Intermediate</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fab fa-react mr-2 gradient-text"></i>React JS</span>
+                        <span class="text-purple-400">Intermediate</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fas fa-database mr-2 gradient-text"></i>MySQL</span>
+                        <span class="text-purple-400">Expert</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fab fa-git-alt mr-2 gradient-text"></i>Version Control</span>
+                        <span class="text-purple-400">Intermediate</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fas fa-pencil-ruler mr-2 gradient-text"></i>Figma</span>
+                        <span class="text-purple-400">Intermediate</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fas fa-palette mr-2 gradient-text"></i>Photoshop</span>
+                        <span class="text-purple-400">Intermediate</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <h3 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        <span><i class="fas fa-video mr-2 gradient-text"></i>Premiere Pro</span>
+                        <span class="text-purple-400">Intermediate</span>
+                    </h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title gradient-text fade-in">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3">Project Title 1</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">Brief description of your project. Highlight key technologies and features used.</p>
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            <span class="px-3 py-1 bg-purple-500 bg-opacity-20 rounded-full text-sm">Java</span>
+                            <span class="px-3 py-1 bg-purple-500 bg-opacity-20 rounded-full text-sm">Spring Boot</span>
+                        </div>
+                        <a href="#" class="btn-primary text-center">View on GitHub <i class="fas fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3">Project Title 2</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">Brief description of your project. Highlight key technologies and features used.</p>
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            <span class="px-3 py-1 bg-purple-500 bg-opacity-20 rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-purple-500 bg-opacity-20 rounded-full text-sm">MySQL</span>
+                        </div>
+                        <a href="#" class="btn-primary text-center">View on GitHub <i class="fas fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3">Project Title 3</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">Brief description of your project. Highlight key technologies and features used.</p>
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            <span class="px-3 py-1 bg-purple-500 bg-opacity-20 rounded-full text-sm">Full Stack</span>
+                            <span class="px-3 py-1 bg-purple-500 bg-opacity-20 rounded-full text-sm">API</span>
+                        </div>
+                        <a href="#" class="btn-primary text-center">View on GitHub <i class="fas fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center fade-in">
+                <a href="#" class="btn-secondary">
+                    <i class="fab fa-github mr-2"></i>More on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title gradient-text fade-in">Certificates & Achievements</h2>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="cert-card fade-in">
+                    <div class="cert-image">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Certificate 1</h3>
+                        <p class="text-gray-400 mb-2">Issuing Organization</p>
+                        <p class="text-sm text-purple-400">Date Issued</p>
+                    </div>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-image">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Certificate 2</h3>
+                        <p class="text-gray-400 mb-2">Issuing Organization</p>
+                        <p class="text-sm text-purple-400">Date Issued</p>
+                    </div>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-image">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Certificate 3</h3>
+                        <p class="text-gray-400 mb-2">Issuing Organization</p>
+                        <p class="text-sm text-purple-400">Date Issued</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center fade-in">
+                <a href="#" class="btn-secondary">
+                    <i class="fab fa-linkedin mr-2"></i>More on LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title gradient-text fade-in">Get In Touch</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-bold mb-6">Let's Work Together</h3>
+                        <p class="text-gray-300 mb-8">
+                            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="social-link">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Email</p>
+                                    <p class="font-semibold">prabash@example.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="social-link">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Phone</p>
+                                    <p class="font-semibold">+94 XX XXX XXXX</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="social-link">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Location</p>
+                                    <p class="font-semibold">Colombo, Sri Lanka</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in">
+                        <form class="contact-form">
+                            <input type="text" placeholder="Your Name" required>
+                            <input type="email" placeholder="Your Email" required>
+                            <input type="text" placeholder="Subject" required>
+                            <textarea rows="5" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn-primary w-full">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Prabash Perera. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
+        });
+
+        // Contact form submission
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Animate progress bars when visible
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressFills = entry.target.querySelectorAll('.progress-fill');
+                    progressFills.forEach(fill => {
+                        const width = fill.style.width;
+                        fill.style.width = '0%';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 100);
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            progressObserver.observe(skillsSection);
+        }
+
+        // Enhanced Typing Effect
+        const roles = [
+            'Backend Developer',
+            'Spring Boot Expert', 
+            'Full Stack Engineer',
+            'Java Specialist',
+            'API Architect'
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 80;
+        const deletingSpeed = 40;
+        const pauseTime = 2000;
+
+        function typeRole() {
+            const roleElement = document.querySelector('.typing-text');
+            if (!roleElement) return;
+
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                roleElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                roleElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                }, pauseTime);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+            }
+
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeRole, speed);
+        }
+
+        // Start typing effect after page loads
+        window.addEventListener('load', () => {
+            setTimeout(typeRole, 500);
+        });
+
+        // Hide scroll indicator when scrolling starts
+        let scrollTimeout;
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        
+        window.addEventListener('scroll', () => {
+            if (scrollIndicator && window.scrollY > 100) {
+                scrollIndicator.classList.add('hidden');
+            } else if (scrollIndicator && window.scrollY <= 100) {
+                scrollIndicator.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
